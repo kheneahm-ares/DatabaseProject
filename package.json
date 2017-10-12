@@ -1,0 +1,7 @@
+{
+  "name": "database_project",
+  "private": true,
+  "dependencies": {
+    "jquery": "^3.2.1"
+  }
+}
