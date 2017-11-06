@@ -23,7 +23,7 @@
         <td><%= book.pages %></td>
         <td><%= book.publisher %></td>
         <td><%= book.copiesLeft %></td>
-        <td><%= book.category.name%></td>
+        <td><a href="/categories/show?category=<%=book.category.id%>"><%= book.category.name%></a></td>
         <td><%= link_to 'Show', book %></td>
         <td><%= link_to 'Edit', edit_book_path(book) %></td>
         <td><%= link_to 'Destroy', book, method: :delete, data: { confirm: 'Are you sure?' } %></td>
