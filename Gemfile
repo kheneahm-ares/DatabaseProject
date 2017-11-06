@@ -57,3 +57,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'jquery-rails'
 gem 'clearance', '~> 1.15.1'
+
+gem 'coffee-script-source', '1.8.0'
+
+gem 'wdm', '>= 0.1.0' if Gem.win_platform?
