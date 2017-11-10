@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 20171102183144) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "categoryId"
+    t.integer "authorId"
   end
 
   create_table "categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

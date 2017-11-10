@@ -27,6 +27,11 @@
       <%= @book.copiesLeft %>
     </h3>
 
+<p>
+  <strong>Category:</strong>
+  <%= @book.category.name %>
+</p>
+
 <%= link_to 'Edit', edit_book_path(@book) %> |
 <%= link_to 'Back', books_path %>
   </div>

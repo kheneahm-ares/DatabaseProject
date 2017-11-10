@@ -26,6 +26,16 @@
     </div>
 
     <div class="form-group">
+      <%= form.label :author_fname, "Author First Name" %>
+      <input type="text" name="author_fname" class="form-control">
+    </div>
+
+    <div class="form-group">
+      <%= form.label :author_lname, "Author Last Name" %>
+      <input type="text" name="author_lname" class="form-control">
+    </div>
+
+    <div class="form-group">
       <%= form.label :pages %>
       <%= form.number_field :pages, id: :book_pages, class: "form-control" %>
     </div>
@@ -37,27 +47,27 @@
 
 
     <div class="form-group">
-      <%= form.label :copiesLeft, "Copies Left" %>
+      <%= form.label :copiesLeft, "Copies" %>
       <%= form.number_field :copiesLeft, id: :book_copiesLeft, class: "form-control" %>
     </div>
 
-<div class="form-group">
-  <select name="category" class="selectpicker show-tick" title="Select a Category" data-dropup-auto="false" required>
+    <div class="form-group">
+      <%= form.label :category %>
+      <select name="category" class="selectpicker show-tick form-control" title="Select a Category" data-dropup-auto="false" required>
 
-        <% @categories.each do |category| %>
-          <option value="<%= category.id %>">
-            <%= category.name %>
-          </option>
-        <% end %>
+            <% @categories.each do |category| %>
+              <option value="<%= category.id %>">
+                <%= category.name %>
+              </option>
+            <% end %>
 
-  </select>
-</div>
+      </select>
+    </div>
 
     <div class="actions">
-      <%= form.submit class: "btn btn-success"%>
+      <%= form.submit class: "btn btn-success"%>&nbsp;
+      <%= link_to 'Back', books_path, class: "btn btn-default"%>
     </div>
     <% end %>
   </div>
 </div>
-
-<%= link_to 'Back', books_path, class: "btn btn-primary"%>

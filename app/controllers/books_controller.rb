@@ -10,7 +10,7 @@ class BooksController < ApplicationController
   # GET /books/1
   # GET /books/1.json
   def show
-
+    
   end
 
   # GET /books/new
@@ -22,13 +22,23 @@ class BooksController < ApplicationController
 
   # GET /books/1/edit
   def edit
+    @categories = Category.all
   end
 
   # POST /books
   # POST /books.json
   def create
+    @author = Author.where("fname = ? AND lname = ?", params["author_fname"], params["author_lname"]).first
+    if @author == nil
+      @author = Author.new
+      @author.fName = params["author_fname"]
+      @author.lName = params["author_lname"]
+      @author.save
+    end
+
     @book = Book.new(book_params)
     @book.categoryId = params[:category]
+    @book.authorId = @author.id
 
     respond_to do |format|
       if @book.save
@@ -44,6 +54,17 @@ class BooksController < ApplicationController
   # PATCH/PUT /books/1
   # PATCH/PUT /books/1.json
   def update
+    @author = Author.where("fname = ? AND lname = ?", params["author_fname"], params["author_lname"]).first
+    if @author == nil
+      @author = Author.new
+      @author.fName = params["author_fname"]
+      @author.lName = params["author_lname"]
+      @author.save
+    end
+
+    @book.categoryId = params[:category]
+    @book.authorId = @author.id
+
     respond_to do |format|
       if @book.update(book_params)
         format.html { redirect_to @book, notice: 'Book was successfully updated.' }
@@ -73,6 +94,6 @@ class BooksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def book_params
-      params.require(:book).permit(:isbn, :title, :pages, :publisher, :copiesLeft, :categoryId)
+      params.require(:book).permit(:isbn, :title, :pages, :publisher, :copiesLeft, :categoryId, :authorId)
     end
 end
