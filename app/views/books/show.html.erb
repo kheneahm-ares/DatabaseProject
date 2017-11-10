@@ -11,6 +11,11 @@
 </p>
 
 <p>
+  <strong>Author:</strong>
+  <%= @book.author.fName %> <%= @book.author.lName %>
+</p>
+
+<p>
   <strong>Pages:</strong>
   <%= @book.pages %>
 </p>
@@ -21,8 +26,13 @@
 </p>
 
 <p>
-  <strong>Copiesleft:</strong>
+  <strong>Copies Available:</strong>
   <%= @book.copiesLeft %>
+</p>
+
+<p>
+  <strong>Category:</strong>
+  <%= @book.category.name %>
 </p>
 
 <%= link_to 'Edit', edit_book_path(@book) %> |
