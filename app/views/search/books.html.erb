@@ -6,8 +6,19 @@
       We couldn't find any books matching <%= @search%>
     <% else %>
       <% @books.each do |book| %>
-      <a href="/books/<%=book.isbn%>"><%= book.title %></a>
-      <hr />
+      <div class="col-md-8">
+        <a href="/books/<%=book.isbn%>"><%= book.title %></a>
+        <p>
+          <%= book.pages %>
+        </p>
+        <p>
+          <%= book.publisher %>
+        </p>
+        <p>
+          <%= book.copiesLeft %>
+        </p>
+        <hr />
+      </div>
       <% end %>
     <% end %>
 

@@ -13,11 +13,15 @@ Rails.application.routes.draw do
  get "/sign_up" => "clearance/users#new", as: "sign_up"
 
   get '/search/books' , to: "search#books"
+  get '/search/index' , to: "search#index"
+  get '/search/allbooks' , to: "search#allbooks"
+
+
 
   resources :categories
   resources :books
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
-  root to: "profile#index"
+  root to: "welcome#index"
 
 end
