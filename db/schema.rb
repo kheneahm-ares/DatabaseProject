@@ -10,7 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171102183144) do
+ActiveRecord::Schema.define(version: 20171116050252) do
+
+  create_table "authors", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "fName"
+    t.string "lName"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "books", primary_key: "isbn", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "title"
@@ -27,6 +34,20 @@ ActiveRecord::Schema.define(version: 20171102183144) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "rentals", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.date "dateRented"
+    t.date "dateDue"
+    t.integer "daysLeft"
+    t.boolean "isRenewed"
+    t.boolean "isReturned"
+    t.date "dateReturned"
+    t.float "fee", limit: 24
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "userId"
+    t.bigint "isbn"
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
