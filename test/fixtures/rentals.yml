@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  dateRented: 2017-11-15
+  dateDue: 2017-11-15
+  daysLeft: 1
+  returned: false
+  dateReturned: 2017-11-15
+  fee: 1.5
+
+two:
+  dateRented: 2017-11-15
+  dateDue: 2017-11-15
+  daysLeft: 1
+  returned: false
+  dateReturned: 2017-11-15
+  fee: 1.5

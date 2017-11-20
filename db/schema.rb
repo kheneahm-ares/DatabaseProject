@@ -10,7 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20171110051007) do
+=======
+ActiveRecord::Schema.define(version: 20171116050252) do
+
+  create_table "authors", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "fName"
+    t.string "lName"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+>>>>>>> 6015219c1c89fe7331ae6b2bbeba1fd6199aead7
 
   create_table "authors", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string "fName"
@@ -36,7 +47,25 @@ ActiveRecord::Schema.define(version: 20171110051007) do
     t.datetime "updated_at", null: false
   end
 
+<<<<<<< HEAD
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+=======
+  create_table "rentals", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.date "dateRented"
+    t.date "dateDue"
+    t.integer "daysLeft"
+    t.boolean "isRenewed"
+    t.boolean "isReturned"
+    t.date "dateReturned"
+    t.float "fee", limit: 24
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "userId"
+    t.bigint "isbn"
+  end
+
+  create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+>>>>>>> 6015219c1c89fe7331ae6b2bbeba1fd6199aead7
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "email", null: false
