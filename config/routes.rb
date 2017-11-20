@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :rentals
   resources :passwords, controller: "clearance/passwords", only: [:create, :new]
   resource :session, controller: "clearance/sessions", only: [:create]
 
@@ -9,14 +10,15 @@ Rails.application.routes.draw do
   end
 
   get "/sign_in" => "clearance/sessions#new", as: "sign_in"
- delete "/sign_out" => "clearance/sessions#destroy", as: "sign_out"
- get "/sign_up" => "clearance/users#new", as: "sign_up"
+  delete "/sign_out" => "clearance/sessions#destroy", as: "sign_out"
+  get "/sign_up" => "clearance/users#new", as: "sign_up"
 
   get '/search/books' , to: "search#books"
   get '/search/index' , to: "search#index"
   get '/search/allbooks' , to: "search#allbooks"
 
-
+  post '/rentals/:id', to: "rentals#update"
+  post '/rentals/renew/:id', to: "rentals#renew"
 
   resources :categories
   resources :books

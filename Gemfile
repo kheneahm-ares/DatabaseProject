@@ -56,3 +56,5 @@ gem 'jquery-rails'
 gem 'clearance', '~> 1.15.1'
 
 gem 'coffee-script-source', '1.8.0'
+
+gem 'tzinfo-data'
