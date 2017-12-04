@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171116050252) do
+ActiveRecord::Schema.define(version: 20171202010514) do
 
   create_table "authors", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string "fName"
@@ -26,12 +26,27 @@ ActiveRecord::Schema.define(version: 20171116050252) do
     t.integer "copiesLeft"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "categoryId"
-    t.integer "authorId"
+    t.integer "category_id"
+    t.integer "author_id"
   end
 
   create_table "categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "order_items", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+    t.bigint "book_id"
+    t.bigint "order_id"
+    t.integer "quantity"
+    t.integer "total_books"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "orders", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+    t.integer "total"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

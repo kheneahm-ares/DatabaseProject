@@ -10,10 +10,10 @@ class CategoriesController < ApplicationController
   # GET /categories/1
   # GET /categories/1.json
   def show
-    @categoryId = params[:id]
-    @categoryName = Category.find(@categoryId).name
+    @category_id = params[:id]
+    @categoryName = Category.find(@category_id).name
 
-    @books = Book.where("categoryId = ?", @categoryId)
+    @books = Book.where("category_id = ?", @category_id)
 
   end
 

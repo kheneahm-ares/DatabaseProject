@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   resources :rentals
   resources :passwords, controller: "clearance/passwords", only: [:create, :new]
   resource :session, controller: "clearance/sessions", only: [:create]
@@ -17,11 +18,17 @@ Rails.application.routes.draw do
   get '/search/index' , to: "search#index"
   get '/search/allbooks' , to: "search#allbooks"
 
+  get '/order_items/order_all', to: 'order_items#order_all'
+
   post '/rentals/:id', to: "rentals#update"
   post '/rentals/renew/:id', to: "rentals#renew"
 
+  post '/order_items/order_all', to: "order_items#order_all"
+
   resources :categories
   resources :books
+  resources :order_items, :except => [:show]
+  resources :carts, only: [:show]
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   root to: "welcome#index"

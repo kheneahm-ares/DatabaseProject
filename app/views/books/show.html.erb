@@ -41,14 +41,13 @@
       <%= link_to 'Edit', edit_book_path(@book) %> |
       <%= link_to 'Back', books_path %>
     <% else -%>
-      <% if @book.copiesLeft > 0 -%>
-        <!--<%= link_to 'Rent', rentals_path(:isbn => @book.isbn), :method => :post %>-->
-        <form name="rent" action="/rentals" method="post">
-          <input type="hidden" name="isbn" value="<%= @book.isbn %>">
-          <input type="hidden" name="copies" value="<%= @book.copiesLeft %>">
-          <input type="submit" value="Rent" onclick="event.preventDefault(); checkSignIn();">
-        </form>
-      <% end -%>
+    <% if @book.copiesLeft > 0 %>
+      <%= form_for(@order_item, remote: true) do |f| %>
+      <%= f.hidden_field :book_id, value: @book.id %>
+      <%= f.hidden_field :quantity, value: 1, min: 1 %>
+      <input type="submit" value="Rent" class="btn btn-primary" onclick="event.preventDefault(); checkSignIn();">
+      <% end %>
+    <% end %>
     <% end -%>
   </div>
 </div>

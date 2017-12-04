@@ -4,6 +4,7 @@ class RentalsController < ApplicationController
 
   # GET /rentals
   # GET /rentals.json
+
   def index
     @current_rentals = Rental.where("userId = ? and isReturned = 0", current_user.id)
     @past_rentals = Rental.where("userId = ? and isReturned = 1", current_user.id)
@@ -42,7 +43,7 @@ class RentalsController < ApplicationController
         @book = Book.find_by isbn: params["isbn"]
         @book.copiesLeft = params["copies"].to_i - 1
         @book.save
-        
+
         format.html { redirect_to @rental, notice: 'Rental was successfully created.' }
         format.json { render :show, status: :created, location: @rental }
       else

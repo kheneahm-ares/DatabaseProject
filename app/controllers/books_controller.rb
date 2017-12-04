@@ -10,7 +10,8 @@ class BooksController < ApplicationController
   # GET /books/1
   # GET /books/1.json
   def show
-    
+    @order_item = current_order.order_items.new
+
   end
 
   # GET /books/new
@@ -37,8 +38,8 @@ class BooksController < ApplicationController
     end
 
     @book = Book.new(book_params)
-    @book.categoryId = params[:category]
-    @book.authorId = @author.id
+    @book.category_id = params[:category]
+    @book.author_id = @author.id
 
     respond_to do |format|
       if @book.save
@@ -62,8 +63,8 @@ class BooksController < ApplicationController
       @author.save
     end
 
-    @book.categoryId = params[:category]
-    @book.authorId = @author.id
+    @book.category_id = params[:category]
+    @book.author_id = @author.id
 
     respond_to do |format|
       if @book.update(book_params)
@@ -94,6 +95,6 @@ class BooksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def book_params
-      params.require(:book).permit(:isbn, :title, :pages, :publisher, :copiesLeft, :categoryId, :authorId)
+      params.require(:book).permit(:isbn, :title, :pages, :publisher, :copiesLeft, :category_id, :author_id)
     end
 end

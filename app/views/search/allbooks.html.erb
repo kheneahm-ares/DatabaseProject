@@ -15,6 +15,14 @@
         <%= book.copiesLeft %>
       </p>
       <hr />
+      <div class="pull-right">
+        <% if book.copiesLeft > 0 %>
+          <%= form_for(@order_item, remote: true) do |f| %>
+          <%= f.hidden_field :book_id, value: book.id %>
+          <%= f.hidden_field :quantity, value: 1, min: 1 %>
+          <%= f.submit "Add to cart", class: "btn btn-primary btn-sm" %>
+          <% end %>
+        <% end %>
       <% end %>
   </div>
   </div>
