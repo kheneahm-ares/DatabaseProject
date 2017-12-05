@@ -62,3 +62,5 @@ gem 'coffee-script-source', '1.8.0'
 gem 'tzinfo-data'
 
 gem 'rails_admin'
+
+gem "paperclip", "~> 5.0.0"

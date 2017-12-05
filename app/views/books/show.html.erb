@@ -1,41 +1,45 @@
-<p id="notice"><%= notice %></p>
-
 <div class="row">
   <div class="col-md-8 col-md-offset-3" style="border: 2px dashed rgba(27,31,35,0.3); border-radius: 5px; padding: 30px; width: 648.33px;">
-    <h3>
-      <strong>ISBN:</strong>
-      <%= @book.isbn %>
-    </h3>
+    <div class="row">
+        <%= image_tag @book.image.url, size: "600x400" %>
+    </div>
+    <div class="row text-center">
+      <h3>
+        <strong>ISBN:</strong>
+        <%= @book.isbn %>
+      </h3>
 
-    <h3>
-      <strong>Title:</strong>
-      <%= @book.title %>
-    </h3>
+      <h3>
+        <strong>Title:</strong>
+        <%= @book.title %>
+      </h3>
 
-    <h3>
-      <strong>Author:</strong>
-      <%= @book.author.fName %> <%= @book.author.lName %>
-    </h3>
+      <h3>
+        <strong>Author:</strong>
+        <%= @book.author.fName %> <%= @book.author.lName %>
+      </h3>
 
-    <h3>
-      <strong>Pages:</strong>
-      <%= @book.pages %>
-    </h3>
+      <h3>
+        <strong>Pages:</strong>
+        <%= @book.pages %>
+      </h3>
 
-    <h3>
-      <strong>Publisher:</strong>
-      <%= @book.publisher %>
-    </h3>
+      <h3>
+        <strong>Publisher:</strong>
+        <%= @book.publisher %>
+      </h3>
 
-    <h3>
-      <strong>Copies Available:</strong>
-      <%= @book.copiesLeft %>
-    </h3>
+      <h3>
+        <strong>Copies Available:</strong>
+        <%= @book.copiesLeft %>
+      </h3>
 
-    <h3>
-      <strong>Category:</strong>
-      <%= @book.category.name %>
-    </h3>
+      <h3>
+        <strong>Category:</strong>
+        <%= @book.category.name %>
+      </h3>
+    </div>
+
 
     <% if (signed_in?) && (current_user.isAdmin?) -%>
       <%= link_to 'Edit', edit_book_path(@book) %> |

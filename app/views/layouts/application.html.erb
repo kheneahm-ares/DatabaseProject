@@ -120,7 +120,7 @@
   </nav>
   <div class="container">
     <% flash.each do |name, msg| -%>
-      <p class="alert alert-danger" id="successMessage"> <%= name %>: <%= msg%></p>
+      <p class="alert alert-info" id="successMessage"> <%= name %>: <%= msg%></p>
 
     <% end -%>
     <%= yield %>
