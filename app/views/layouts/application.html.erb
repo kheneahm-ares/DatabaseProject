@@ -15,9 +15,11 @@
     <link href="https://fonts.googleapis.com/css?family=Rubik" rel="stylesheet">
 
     <style>
+
       * {
         font-family: 'Rubik', sans-serif;
       }
+
     </style>
 
   </head>
@@ -123,7 +125,27 @@
       <p class="alert alert-info" id="successMessage"> <%= name %>: <%= msg%></p>
 
     <% end -%>
-    <%= yield %>
+
+    <div class="col-md-12">
+      <%= yield %>
+    </div>
   </div>
 </body>
 </html>
+
+
+
+
+<script type="text/javascript">
+  function checkSignIn() {
+    var signed_in = <%= signed_in? %>;
+
+    if (signed_in)
+      document.forms['rent'].submit();
+    else {
+      alert("Sign in or register to rent a book.");
+      return false;
+    }
+
+  }
+</script>
