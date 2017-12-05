@@ -41,7 +41,7 @@ ActiveRecord::Schema.define(version: 20171205190527) do
   end
 
   create_table "order_items", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
-    t.bigint "book_id"
+    t.integer "book_id"
     t.bigint "order_id"
     t.integer "quantity"
     t.integer "total_books"

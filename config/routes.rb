@@ -17,6 +17,10 @@ Rails.application.routes.draw do
   get '/search/books' , to: "search#books"
   get '/search/index' , to: "search#index"
   get '/search/allbooks' , to: "search#allbooks"
+  get '/contact', to: "welcome#contact"
+  get '/about', to: "welcome#about"
+  get '/hours', to: "welcome#hours"
+  get '/events', to: "welcome#events"
 
   get '/order_items/order_all', to: 'order_items#order_all'
 
