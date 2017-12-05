@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<% if @notifications.blank? -%>
+  <h1>Notifications</h1>
+  <div class="jumbotron">
+    <p style="line-height: 30px;">
+      You don't have any notifications.
+    </p>
+  </div>
+<% else -%>
+  <div class="well">
+    <h1>Notifications</h1>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Message</th>
+          <th>Rental</th>
+          <th>Date Received</th>
+          <th colspan="1"></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @notifications.each do |notification| %>
+          <tr>
+            <td><%= notification.message %></td>
+            <td><%= notification.rental.book.title %></td>
+            <td><%= notification.created_at.strftime("%m/%d/%Y at %I:%M%p") %></td>
+            <td><%= link_to 'Delete', notification, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+<% end -%>

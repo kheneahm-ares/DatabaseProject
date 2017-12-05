@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :notifications
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   resources :rentals
   resources :passwords, controller: "clearance/passwords", only: [:create, :new]
