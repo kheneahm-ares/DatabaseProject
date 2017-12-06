@@ -22,6 +22,27 @@
 
     </style>
 
+    <script>
+    $(document).ready(function(){
+      var signed_in = <%= signed_in? %>;
+      console.log("hello");
+      console.log(signed_in);
+
+    });
+    function validateForm() {
+      var signed_in = <%= signed_in? %>;
+
+      console.log(signed_in);
+      if (signed_in) {
+          return true;
+      }
+      else{
+        alert("Must be signed in to rent books");
+        return false;
+      }
+  }
+    </script>
+
   </head>
   <body>
   <div class="container">
@@ -135,20 +156,3 @@
   </div>
 </body>
 </html>
-
-
-
-
-<script type="text/javascript">
-  function checkSignIn() {
-    var signed_in = <%= signed_in? %>;
-
-    if (signed_in)
-      document.forms['rent'].submit();
-    else {
-      alert("Sign in or register to rent a book.");
-      return false;
-    }
-
-  }
-</script>

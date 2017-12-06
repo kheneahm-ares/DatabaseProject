@@ -46,7 +46,7 @@
       <%= link_to 'Back', books_path %>
     <% else -%>
     <% if @book.copiesLeft > 0 %>
-    <form class="new_order_item" id="new_order_item" name="rent" action="/order_items" accept-charset="UTF-8" data-remote="true" method="post"><input name="utf8" type="hidden" value="&#x2713;" />
+    <form class="new_order_item" id="new_order_item" name="rent" action="/order_items" accept-charset="UTF-8" data-remote="true" method="post">
       <input value="<%=@book.id%>" type="hidden" name="order_item[book_id]" id="order_item_book_id" />
       <input value="1" min="1" type="hidden" name="order_item[quantity]" id="order_item_quantity" />
       <input type="submit" value="Add to cart" class="btn btn-primary" onclick="event.preventDefault(); checkSignIn();">

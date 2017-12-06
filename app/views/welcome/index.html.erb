@@ -48,11 +48,12 @@
         <%= image_tag b.image.url%>
         <div class="caption" style="height: 200px;">
           <% if b.copiesLeft > 0 %>
-          <form class="new_order_item" id="new_order_item" name="rent" action="/order_items" accept-charset="UTF-8" data-remote="true" method="post"><input name="utf8" type="hidden" value="&#x2713;" />
-              <input value="<%=b.id%>" type="hidden" name="order_item[book_id]" id="order_item_book_id" />
-              <input value="1" min="1" type="hidden" name="order_item[quantity]" id="order_item_quantity" />
-            <input type="submit" value="Add to cart" class="btn btn-primary" onclick="event.preventDefault(); checkSignIn();">
-          </form>
+          <%= b.id %>
+          <%= form_for(@order_item, remote: true, :html => {:onsubmit => "return validateForm();"}) do |f| %>
+					<%= f.hidden_field :book_id, value: b.id %>
+            <input value="1" min="1" type="hidden" name="order_item[quantity]" id="order_item_quantity" />
+            <input type="submit" value="Add to cart" class="btn btn-primary" >
+          <% end %>
           <% end %>
           <div class="caption">
             <h5>
@@ -71,18 +72,3 @@
 
   <% end %>
 </div>
-
-
-<script type="text/javascript">
-  function checkSignIn() {
-    var signed_in = <%= signed_in? %>;
-
-    if (signed_in)
-      document.forms["rent"].submit();
-    else {
-      alert("Sign in or register to rent a book.");
-      return false;
-    }
-
-  }
-</script>
