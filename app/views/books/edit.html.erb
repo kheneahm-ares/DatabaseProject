@@ -69,6 +69,10 @@
 
       </select>
     </div>
+    <div class="form-group">
+      <%= form.label :image, "Choose an image" %>
+      <%= form.file_field :image, class: "form-control", :required => true %>
+    </div>
 
     <div class="actions">
       <%= form.submit class: "btn btn-success"%>
@@ -79,4 +83,3 @@
 
 <%= link_to 'Show', @book %> |
 <%= link_to 'Back', books_path %>
-

@@ -1,28 +1,88 @@
-<div class="col-md-6" style="padding-left: 35px;">
-    <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
-    <div class="carousel-inner" role="listbox">
-        <div class="item active">
-        <img class="d-block img-fluid" src="/images/bookclub.jpg" alt="First slide">
+
+<style>
+.carousel-inner > .item > img {
+  width:740px;
+  height:360px;
+}
+</style>
+
+<div class="row carousel-holder">
+    <div class="col-md-8 col-md-offset-2">
+        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+                <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                <li data-target="#carousel-example-generic" data-slide-to="3"></li>
+
+            </ol>
+            <div class="carousel-inner">
+                <div class="item active">
+                    <img class="slide-image" src="/images/bookclub.jpg" width="400" alt="">
+                </div>
+                <div class="item">
+                    <img class="slide-image" src="/images/booksale.png" alt="">
+                </div>
+                <div class="item">
+                    <img class="slide-image" src="/images/coffeestory.jpg" alt="">
+                </div>
+                <div class="item">
+                    <img class="slide-image" src="/images/gamesday.png" alt="">
+                </div>
+            </div>
+            <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left"></span>
+            </a>
+            <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right"></span>
+            </a>
         </div>
-        <div class="item">
-        <img class="d-block img-fluid" src="/images/booksale.png" alt="Second slide">
-        </div>
-        <div class="item">
-        <img class="d-block img-fluid" src="/images/coffeestory.jpg" alt="Third slide" height="240" width="360">
-        </div>
-        <div class="item">
-        <img class="d-block img-fluid" src="/images/gamesday.png" alt="Fourth slide" height="211" width="379">
-        </div>
-    </div>
-    </div>
-    <div>
-      <h2>Check out or newly added books!</h2>
     </div>
 </div>
+<hr />
+<div class="row col-md-8 col-md-offset-2">
+  <h1 class="text-center">Check out our newly added books!</h1>
+  <% @books.each do |b| %>
+    <div class="col-md-4">
+      <div class="thumbnail">
+        <%= image_tag b.image.url%>
+        <div class="caption" style="height: 200px;">
+          <% if b.copiesLeft > 0 %>
+          <form class="new_order_item" id="new_order_item" name="rent" action="/order_items" accept-charset="UTF-8" data-remote="true" method="post"><input name="utf8" type="hidden" value="&#x2713;" />
+              <input value="<%=b.id%>" type="hidden" name="order_item[book_id]" id="order_item_book_id" />
+              <input value="1" min="1" type="hidden" name="order_item[quantity]" id="order_item_quantity" />
+            <input type="submit" value="Add to cart" class="btn btn-primary" onclick="event.preventDefault(); checkSignIn();">
+          </form>
+          <% end %>
+          <div class="caption">
+            <h5>
+              <a href="/books/<%=b.isbn%>"><%= b.title %></a>
+            </h5>
+            <p>
+              <%=b.author.fName %>
+              <%=b.author.lName %>
+            </p>
+            <label>Copies Left <%=b.copiesLeft %></label>
 
-<div class="col-md-6">
-  <div class="col-md-6 col-md-offset-3">
-    <iframe height="300" width="300" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2976.423355688576!2d-88.35182828456277!3d41.75452927923226!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x880ee56472c31c77%3A0x67f84d75ad2631ca!2sAurora+University!5e0!3m2!1sen!2sus!4v1512141504430" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
-  </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
+  <% end %>
 </div>
+
+
+<script type="text/javascript">
+  function checkSignIn() {
+    var signed_in = <%= signed_in? %>;
+
+    if (signed_in)
+      document.forms["rent"].submit();
+    else {
+      alert("Sign in or register to rent a book.");
+      return false;
+    }
+
+  }
+</script>

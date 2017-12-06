@@ -15,9 +15,11 @@
     <link href="https://fonts.googleapis.com/css?family=Rubik" rel="stylesheet">
 
     <style>
+
       * {
         font-family: 'Rubik', sans-serif;
       }
+
     </style>
 
   </head>
@@ -101,16 +103,16 @@
             <a href="/search/index">Search</a>
           </li>
           <li style="padding-left: 20px; padding-right: 20px;">
-            <a href="/">Events</a>
+            <a href="/events">Events</a>
           </li>
           <li style="padding-left: 20px; padding-right: 20px;">
-            <a href="/">Hours</a>
+            <a href="/hours">Hours</a>
           </li>
           <li style="padding-left: 20px; padding-right: 20px;">
-            <a href="/">About Us</a>
+            <a href="/about">About Us</a>
           </li>
           <li style="padding-left: 20px; padding-right: 20px;">
-            <a href="/">Contact Us</a>
+            <a href="/contact">Contact Us</a>
           </li>
           <li style="padding-left: 20px; padding-right: 20px;">
             <form action="/search/books" method="GET" role="search" class="navbar-form">
@@ -123,10 +125,30 @@
   </nav>
   <div class="container">
     <% flash.each do |name, msg| -%>
-      <p class="alert alert-danger" id="successMessage"> <%= name %>: <%= msg%></p>
+      <p class="alert alert-info" id="successMessage"> <%= name %>: <%= msg%></p>
 
     <% end -%>
-    <%= yield %>
+
+    <div class="col-md-12">
+      <%= yield %>
+    </div>
   </div>
 </body>
 </html>
+
+
+
+
+<script type="text/javascript">
+  function checkSignIn() {
+    var signed_in = <%= signed_in? %>;
+
+    if (signed_in)
+      document.forms['rent'].submit();
+    else {
+      alert("Sign in or register to rent a book.");
+      return false;
+    }
+
+  }
+</script>

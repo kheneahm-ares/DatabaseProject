@@ -8,6 +8,7 @@ end
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.4'
+gem 'wdm', '>= 0.1.0' if Gem.win_platform?
 # Use mysql as the database for Active Record
 gem 'mysql2', '>= 0.3.18', '< 0.5'
 # Use Puma as the app server
@@ -62,3 +63,5 @@ gem 'coffee-script-source', '1.8.0'
 gem 'tzinfo-data'
 
 gem 'rails_admin'
+
+gem "paperclip", "~> 5.0.0"
