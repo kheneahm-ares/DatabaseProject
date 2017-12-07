@@ -20,7 +20,7 @@ class WelcomeController < ApplicationController
   end
 
   def events
-
+    @meetings = Meeting.all
   end
 
 end

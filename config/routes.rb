@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :meetings
   resources :notifications
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   resources :rentals
@@ -36,6 +37,7 @@ Rails.application.routes.draw do
   resources :carts, only: [:show]
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
+  get '/admin', to: "rails_admin/main#dashboard"
   root to: "welcome#index"
 
 end

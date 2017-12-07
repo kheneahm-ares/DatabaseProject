@@ -1,4 +1,4 @@
-<div class="col-md-8 col-md-offset-4">
+<div class="col-md-2">
       <div>
        <a href="/"><img src="/images/bookfair.png" height="250" width="400"></a>
       </div>
@@ -9,4 +9,23 @@
         <h4><i>When?</i><h4>
         <p>This Saturday from noon to 2pm</p>
       </div>
+  </div>
+<div class="col-md-7 col-md-offset-3">
+  <% if current_user.isAdmin? %>
+    <a href="/meetings">Create new meeting</a>
+
+  <% end %>
+
+    <%= month_calendar events: @meetings do |date, meetings| %>
+      <%= date.strftime("%d") %>
+
+      <% meetings.each do |meeting| %>
+        <div style="color: green">
+          <%= meeting.name %>
+        </div>
+        <div style="color: green">
+          <%= meeting.start_time.strftime("at %I:%M%p") %>
+        </div>
+      <% end %>
+    <% end %>
   </div>
