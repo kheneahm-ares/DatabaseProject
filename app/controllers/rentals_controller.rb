@@ -7,7 +7,7 @@ class RentalsController < ApplicationController
 
   def index
     @current_rentals = Rental.where("userId = ? and isReturned = 0", current_user.id)
-    @past_rentals = Rental.where("userId = ? and isReturned = 1", current_user.id)
+    @past_rentals = Rental.where("userId = ? and isReturned = 1", current_user.id).paginate(:page => params[:page], :per_page => 5)
   end
 
   # GET /rentals/1

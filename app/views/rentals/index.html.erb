@@ -43,7 +43,7 @@
               </form>
             </td>
             <td>
-              <%# Renew button only appears if rental has not been renewed before 
+              <%# Renew button only appears if rental has not been renewed before
               (to prevent spam of renewal) and has no fees (cannot renew if overdue) %>
               <% if (!rental.isRenewed) && (rental.fee == 0) -%>
                 <form name="renew" action="/rentals/renew/<%= rental.id %>" method="post">
@@ -84,5 +84,8 @@
         <% end %>
       </tbody>
     </table>
+    <div class="text-center">
+      <%= will_paginate @past_rentals %></div>
   </div>
+
 <% end -%>

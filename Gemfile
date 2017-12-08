@@ -67,3 +67,5 @@ gem 'tzinfo-data'
 gem 'rails_admin'
 
 gem "paperclip", "~> 5.0.0"
+
+gem 'will_paginate'
