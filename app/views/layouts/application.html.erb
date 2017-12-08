@@ -55,11 +55,11 @@
     <% if signed_in? -%>
     <div class="col-md-6">
       <ul class="nav navbar-nav pull-right">
-        <li>
-          <a href="#" class="not-active">Signed in as
-            <span style="font-weight: bold;"><%= current_user.email%></span>
-          </a>
-        </li>
+      <li>
+        <a href="#" class="not-active">Signed in as
+          <span style="font-weight: bold;" class ="limit_char"><%= current_user.email%></span>
+        </a>
+      </li>
         <li class="active">
           <a href="/carts/show" > <%= current_order.order_items.size %> items in cart</a>
         </li>
