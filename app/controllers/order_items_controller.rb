@@ -16,6 +16,7 @@ class OrderItemsController < ApplicationController
       if(@rental.save)
         @book = Book.find(item.book_id)
         @book.copiesLeft = @book.copiesLeft - 1
+        @book.rental_count += 1
         @book.save
         item.destroy
       end
