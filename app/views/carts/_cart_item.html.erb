@@ -1,0 +1,55 @@
+<% if !@order_item.nil? && @order_item.errors.any? %>
+	<ul>
+		<% @order_item.errors.full_messages.each do |msg| %>
+			<li><%= msg %></li>
+		<% end %>
+	</ul>
+<% end %>
+
+<% if @order_items.size>0 %>
+	<table class="table table-bordered table-striped">
+			<thead>
+				<tr>
+					<th>
+						Title
+					</th>
+					<th>
+						Quantity
+					</th>
+					<th>
+						Options
+					</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% @order_items.each do |item| %>
+					<tr>
+						<td>
+							<%= item.book.title %>
+						</td>
+						<td>
+							<%= item.quantity.to_i %>
+						</td>
+						<td>
+							<%= button_to "Destroy", item, method: :delete, remote: true, class: 'btn btn-danger'  %>
+						</td>
+					</tr>
+				<% end %>
+			</tbody>
+			<tfoot>
+				<tr>
+					<td>
+						Total orders:
+					</td>
+					<td>
+						<%= current_order.order_items.size %>
+					</td>
+				</tr>
+			</tfoot>
+
+	</table>
+	<div class="btn-group pull-right">
+		<%= button_to( "Finish order", :action => "order_all", :controller => "order_items", :method => :post)  %>
+	</div>
+
+<% end %>

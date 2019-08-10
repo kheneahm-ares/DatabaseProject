@@ -8,6 +8,7 @@ end
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.4'
+gem 'wdm', '>= 0.1.0' if Gem.win_platform?
 # Use mysql as the database for Active Record
 gem 'mysql2', '>= 0.3.18', '< 0.5'
 # Use Puma as the app server
@@ -20,6 +21,10 @@ gem 'uglifier', '>= 1.3.0'
 # gem 'therubyracer', platforms: :ruby
 
 gem 'bootstrap-sass', '~> 3.2.0'
+gem "parsley-rails"
+
+gem "simple_calendar", "~> 2.0"
+
 
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
@@ -52,8 +57,15 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
 
-# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
-
-
+gem 'jquery-rails'
 gem 'clearance', '~> 1.15.1'
+
+gem 'coffee-script-source', '1.8.0'
+
+gem 'tzinfo-data'
+
+gem 'rails_admin'
+
+gem "paperclip", "~> 5.0.0"
+
+gem 'will_paginate'

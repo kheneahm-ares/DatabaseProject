@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<div class="row">
+  <div class="col-md-8 col-md-offset-3" style="border: 2px dashed rgba(27,31,35,0.3); border-radius: 5px; padding: 30px; width: 648.33px;">
+<h1>
+  <strong>Name:</strong>
+  <%= @meeting.name %>
+</h1>
+
+<h3>
+  <strong>Start time:</strong>
+  <%= @meeting.start_time %>
+</h3>
+
+
+
+<%= link_to 'Edit', edit_meeting_path(@meeting) %> |
+<%= link_to 'Back', meetings_path %>
+</div>
+</div>

@@ -1,0 +1,31 @@
+<h1>Rental Information</h1>
+
+<p>
+  <strong>ISBN:</strong>
+  <%= @rental.isbn %>
+</p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @rental.book.title %>
+</p>
+
+<p>
+  <strong>Date Rented:</strong>
+  <%= @rental.dateRented.strftime("%B %-d, %Y") %>
+</p>
+
+<p>
+  <strong>Date Due:</strong>
+  <%= @rental.dateDue.strftime("%B %-d, %Y") %>
+</p>
+
+<% if @rental.dateReturned != nil -%>
+  <p>
+    <strong>Date Returned:</strong>
+    <%= @rental.dateReturned.strftime("%B %-d, %Y") %>
+  </p>
+<% end -%>
+
+<!--<%= link_to 'Edit', edit_rental_path(@rental) %> |-->
+<%= link_to 'Back', rentals_path, :class => "btn btn-default" %>

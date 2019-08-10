@@ -1,79 +1,171 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <%= javascript_include_tag 'application' %>
-    <%= csrf_meta_tag %>
-    <!-- JavaScripts -->
-    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
     <%= stylesheet_link_tag    'application', media: 'all',
                                               'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tag %>
+    <!-- JavaScripts -->
+
+    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/parsley.js/2.8.0/parsley.js"></script>
 
     <!-- Fonts -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css" integrity="sha384-XdYbMnZ/QjLh6iI4ogqCTaIjrFk87ip+ekIjefZch0Y+PvJ8CDYtEs1ipDmPorQ+" crossorigin="anonymous">
-    <link href="https://fonts.googleapis.com/css?family=Droid+Sans" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Rubik" rel="stylesheet">
+
+    <style>
+
+      * {
+        font-family: 'Rubik', sans-serif;
+      }
+
+    </style>
+
+    <script>
+    $(document).ready(function(){
+      var signed_in = <%= signed_in? %>;
+      console.log("hello");
+      console.log(signed_in);
+
+    });
+    function validateForm() {
+      var signed_in = <%= signed_in? %>;
+
+      console.log(signed_in);
+      if (signed_in) {
+          return true;
+      }
+      else{
+        alert("Must be signed in to rent books");
+        return false;
+      }
+  }
+    </script>
 
   </head>
   <body>
-    <nav class="navbar navbar-default navbar-static-top">
-      <div class="container">
-        <div class="collapse navbar-collapse" id="app-navbar-collapse">
-
-          <ul class="nav navbar-nav">
-            <li>
-              <a href="#">Home</a>
-            </li>
-          </ul>
-
-          <!-- Right Side Of Navbar -->
-          <ul class="nav navbar-nav navbar-right">
-            <!-- Authentication Links -->
-            <% if signed_in? -%>
-            <li class="dropdown" style="margin-right: 10px;">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" style="padding-left: 8px;">
-                <span class="glyphicon glyphicon-user"></span>
-                <span class="fa fa-btn fa-caret-down"></span>
-              </a>
-              <ul class="dropdown-menu" role="menu">
-                <li style="margin-top: 2px;">
-                  <a href="#" class="not-active">Signed in as
-                    <span style="font-weight: bold;"><%= current_user.email%></span>
-                  </a>
-                </li>
-                <hr style="margin-top: 5px; margin-bottom: 5px;"/>
-                <li>
-                  <a href="#">Profile</a>
-                </li>
-                <hr style="margin-top: 5px; margin-bottom: 5px;"/>
-                <li>
-                  <a href="#">Settings</a>
-                </li>
-                <li>
-                  <a ><%= button_to "Sign out", sign_out_path, method: :delete, class: "btn-link" %>
-                  </a>
-                </li>
-              </ul>
-            </li>
-          <% else -%>
-            <li>
-              <a href="/sign_in">Login</a>
-            </li>
-            <li>
-              <a href="/sign_up">Register</a>
-            </li>
-            <% end -%>
-          </ul>
-        </div>
-      </div>
-    </nav>
-
-    <div id="flash">
-      <% flash.each do |key, value| -%>
-      <div id="flash_<%= key %>"><%=h value %></div>
-      <% end %>
+  <div class="container">
+    <div class="col-md-2">
+      <a href="/"><img src="/images/logo.jpg" height="136" width="237"></a>
     </div>
-
+    <div class="col-md-4 text-right" style="margin-top: 35px;">
+      <h1>AU Library Project</h1>
+    </div>
+    <% if signed_in? -%>
+    <div class="col-md-6">
+      <ul class="nav navbar-nav pull-right">
+      <li>
+        <a href="#" class="not-active">Signed in as
+          <span style="font-weight: bold;" class ="limit_char"><%= current_user.email%></span>
+        </a>
+      </li>
+        <li class="active">
+          <a href="/carts/show" > <%= current_order.order_items.size %> items in cart</a>
+        </li>
+        <% if current_user.isAdmin? -%>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+            <span class="glyphicon glyphicon-wrench"></span>
+            <span class="fa fa-btn fa-caret-down"></span>
+          </a>
+          <ul class="dropdown-menu" role="menu">
+            <li>
+              <a href="/admin">Admin</a>
+            </li>
+             <li>
+               <a href="/book_report">Reports</a>
+             </li>
+          </ul>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+            <span class="glyphicon glyphicon-plus"></span>
+            <span class="fa fa-btn fa-caret-down"></span>
+          </a>
+          <ul class="dropdown-menu" role="menu">
+            <li>
+              <a href="/books/new">Create new Book</a>
+            </li>
+             <li>
+               <a href="/categories/new">Create new Book Category</a>
+             </li>
+          </ul>
+        </li>
+        <% end -%>
+        <li class="dropdown" style="margin-right: 50px;">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" style="padding-left: 8px;">
+            <span class="glyphicon glyphicon-user"></span>
+            <span class="fa fa-btn fa-caret-down"></span>
+          </a>
+          <ul class="dropdown-menu" role="menu">
+            <li>
+              <a href="/rentals" style="padding-left: 22px;">My Rentals</a>
+            </li>
+            <li>
+              <a href="/notifications" style="padding-left: 22px;">Notifications</a>
+            </li>
+            <li>
+              <a>
+                <%= button_to "Sign out", sign_out_path, method: :delete, class: "btn-link", style: "padding: 0px;" %>
+              </a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    <% else -%>
+    <div class="col-md-5">
+      <ul class="nav navbar-nav pull-right">
+        <li>
+          <a href="/sign_in">Sign in</a>
+        </li>
+        <li style="margin-right: 50px;">
+          <a href="/sign_up">Register</a>
+        </li>
+      </ul>
+    </div>
+    <% end -%>
+  </div>
+  <nav class="navbar navbar-default navbar-static-top" style="margin-top: 10px;">
     <div class="container">
+      <div class="collapse navbar-collapse" id="app-navbar-collapse">
+        <ul class="nav navbar-nav">
+          <li style="padding-left: 20px; padding-right: 20px;">
+            <a href="/">Home</a>
+          </li>
+          <li style="padding-left: 20px; padding-right: 20px;">
+            <a href="/search/index">Search</a>
+          </li>
+          <li style="padding-left: 20px; padding-right: 20px;">
+            <a href="/events">Events</a>
+          </li>
+          <li style="padding-left: 20px; padding-right: 20px;">
+            <a href="/hours">Hours</a>
+          </li>
+          <li style="padding-left: 20px; padding-right: 20px;">
+            <a href="/about">About Us</a>
+          </li>
+          <li style="padding-left: 20px; padding-right: 20px;">
+            <a href="/contact">Contact Us</a>
+          </li>
+          <li style="padding-left: 20px; padding-right: 20px;">
+            <form action="/search/books" method="GET" role="search" class="navbar-form">
+              <input style="height: 30px; width: 320px;" type="text" class="form-control search" placeholder="Search Books" name="search" value="">
+            </form>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <div class="container">
+    <% flash.each do |name, msg| -%>
+      <p class="alert alert-info" id="successMessage"> <%= name %>: <%= msg%></p>
+
+    <% end -%>
+
+    <div class="col-md-12">
       <%= yield %>
     </div>
-  </body>
+  </div>
+</body>
 </html>
